@@ -13,10 +13,16 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import Spiner from "../Spiner/Spiner";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Bio = () => {
   const { user, loading } = useAppSelector((state) => state.user);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   if (loading) {
     return <Spiner></Spiner>;
   }
@@ -25,7 +31,7 @@ const Bio = () => {
   }
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 mx-3 pt-20">
-      <div className="flex items-center justify-center relative">
+      <div data-aos="fade-up-right" className="flex items-center justify-center relative">
         <div className="absolute left-10 text-center">
           <h1 className="text-4xl font-semibold text-blue-500">B</h1>
           <h1 className="text-4xl font-semibold text-slate-600">I</h1>
@@ -41,7 +47,7 @@ const Bio = () => {
           <div className="w-72 h-full rounded-lg z-10 bg-gradient-to-r from-blue-500 to-teal-400 absolute bottom-0"></div>
         </div>
       </div>
-      <div className="text-slate-600 text-base py-5 flex flex-col items-center justify-center">
+      <div data-aos="fade-up-left" className="text-slate-600 text-base py-5 flex flex-col items-center justify-center">
         <p className="w-11/12 my-1">
           Hello! My name is MD Rifat Talukdar, a dedicated and motivated Full
           Stack Developer with 2 years of learning experience. I have a strong

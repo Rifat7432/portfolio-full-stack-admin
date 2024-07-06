@@ -1,24 +1,7 @@
 import { Facebook, Twitter, LinkedinIcon, Github } from "lucide-react";
 const CustomFooter = () => {
   return (
-    <footer className="bg-gray-800 text-white text-center p-4 w-full">
-      <div className="rounded-lg p-6">
-        <ul className="flex justify-center items-center space-x-4 mt-2">
-          <li>
-            <a href="#" target="_blank" className="text-blue-500">
-              <Facebook />
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" className="text-blue-500">
-              <Twitter />
-            </a>
-          </li>
-          <li>
-            <a href="#" target="_blank" className="text-blue-500"></a>
-          </li>
-        </ul>
-      </div>
+    <footer className="bg-gray-800 text-white text-center p-4 w-full max-w-7xl mx-auto  z-40">
       <div className="rounded-lg p-6">
         <ul className="flex justify-center items-center space-x-4 mt-2">
           <li>

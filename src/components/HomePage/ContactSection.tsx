@@ -5,9 +5,12 @@ import { useEmailUserMutation } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { Mail, Phone, Send } from "lucide-react";
-import { MutableRefObject } from "react";
+import { MutableRefObject, useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "sonner";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 const ContactSection = ({
   contactRef,
 }: {
@@ -34,11 +37,14 @@ const ContactSection = ({
       toast.error("Email send Failed");
     }
   };
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   if (!user) {
     return <div></div>;
   }
   return (
-    <div ref={contactRef} className="pt-10 pb-32 bg-sky-100 rounded-lg">
+    <div data-aos="zoom-in" ref={contactRef} className="pt-10 pb-32 bg-sky-100 rounded-lg">
       <div className="w-11/12 mx-auto">
         <div className="flex items-center justify-start py-5">
           <p className="w-full h-1 mr-2 rounded-md bg-gradient-to-r from-blue-500 to-teal-400"></p>

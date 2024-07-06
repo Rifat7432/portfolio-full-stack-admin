@@ -3,14 +3,15 @@
 import { useGetBlogQuery } from "@/redux/features/blogs/blogApi";
 import {
   Card,
-  CardBody,
   CardFooter,
   CardHeader,
   Image,
 } from "@nextui-org/react";
 import Spiner from "../Spiner/Spiner";
+import { MutableRefObject, useRef } from "react";
 
 const BlogDetailCard = ({ id }: { id: string }) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { data, isLoading } = useGetBlogQuery(id);
   if (isLoading) {
     return <Spiner></Spiner>;
@@ -19,6 +20,10 @@ const BlogDetailCard = ({ id }: { id: string }) => {
     return <div></div>;
   }
   const blog = data?.data;
+  if (containerRef.current) {
+    containerRef.current.innerHTML = blog.description;
+  }
+
   return (
     <Card className="py-20 bg- px-2 w-11/12 mx-auto bg-sky-50 shadow-sm">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-center">
@@ -34,9 +39,10 @@ const BlogDetailCard = ({ id }: { id: string }) => {
             <h4 className="text-2xl font-semibold leading-none text-default-600">
               {blog.title}
             </h4>
-            <h5 className="text-lg tracking-tight text-default-400">
-              {blog.description}
-            </h5>
+            <div
+              ref={containerRef as MutableRefObject<HTMLDivElement | null>}
+              className="text-lg tracking-tight text-default-400"
+            ></div>
           </div>
         </div>
       </CardFooter>

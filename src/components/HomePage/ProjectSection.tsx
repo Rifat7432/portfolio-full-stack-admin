@@ -11,6 +11,8 @@ import ProjectCard from "./ProjectCard";
 import { setLoading } from "@/redux/features/user/userSlice";
 import { MutableRefObject, useEffect } from "react";
 import Carousel from "react-multi-carousel";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -39,6 +41,9 @@ const ProjectSection = ({
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading]);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   if (loading || !data) {
     return <div></div>;
   }
@@ -46,7 +51,7 @@ const ProjectSection = ({
     dispatch(storProjectData(data?.data));
   }
   return (
-    <div ref={projectRef} className="w-11/12 mx-auto pt-20">
+    <div data-aos="fade-left" ref={projectRef} className="w-11/12 mx-auto pt-20">
       <div className="flex items-center justify-start py-5">
         <p className="w-full h-1 mr-2 rounded-md bg-gradient-to-r from-blue-500 to-teal-400"></p>
         <h1 className="text-4xl font-semibold text-slate-600">

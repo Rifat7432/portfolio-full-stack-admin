@@ -4,6 +4,8 @@ import { useGetSkillsQuery } from "@/redux/features/skill/skillApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import { setLoading } from "@/redux/features/user/userSlice";
 import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const SkillsSection = () => {
   const dispatch = useAppDispatch();
@@ -12,11 +14,14 @@ const SkillsSection = () => {
   useEffect(() => {
     dispatch(setLoading(isLoading));
   }, [isLoading]);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
   if (loading  || !data) {
     return <div></div>;
   }
   return (
-    <div className="w-11/12 mx-auto pt-20">
+    <div data-aos="fade-right" className="w-11/12 mx-auto pt-20">
       <div className="flex items-center justify-start py-5">
         <h1 className="text-4xl font-semibold text-slate-600">
           SKI<span className="text-blue-500">LL</span>S

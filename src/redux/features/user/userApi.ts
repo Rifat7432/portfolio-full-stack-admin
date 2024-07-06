@@ -1,6 +1,5 @@
 import { baseApi } from "@/redux/services/API";
 
-
 const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query({
@@ -16,11 +15,21 @@ const userApi = baseApi.injectEndpoints({
         return {
           url: "email",
           method: "POST",
-          body:email
+          body: email,
+        };
+      },
+    }),
+    login: builder.mutation({
+      query: (loginData) => {
+        return {
+          url: "login",
+          method: "POST",
+          body: loginData,
         };
       },
     }),
   }),
 });
 
-export const {useGetUserQuery,useEmailUserMutation} = userApi;
+export const { useGetUserQuery, useEmailUserMutation, useLoginMutation } =
+  userApi;
